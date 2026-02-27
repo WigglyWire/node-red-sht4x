@@ -1,8 +1,8 @@
 # @wigglywire/node-red-sht4x
-A Node-RED node for interfacing with the Sensirion SHT41 temperature and humidity sensor over I²C. This node reads temperature and relative humidity from an SHT41 sensor when triggered by an input message. Temperature units are user-selectable between °C and °F.
+A Node-RED node for interfacing with the Sensirion SHT4x temperature and humidity sensor over I²C. This node reads temperature and relative humidity from an SHT4x sensor when triggered by an input message. Temperature units are user-selectable between °C and °F.
 
 ## Features:
-* I²C communication with SHT41
+* I²C communication with SHT4x
 * Temperature output in:
   * Degrees Celsius (°C)
   * Degrees Fahrenheit (°F)
@@ -29,7 +29,7 @@ Run the following in your Node-RED user directory (typically `~/.node-red`):
 Restart Node-RED.
 
 ## Hardware Requirements
-* Sensirion SHT41 Temperature & Humidity Sensor
+* Sensirion SHT4x Temperature & Humidity Sensor
 * I²C enabled system (e.g., Raspberry Pi)
 
 **Enable I²C (Raspberry Pi)**
@@ -48,7 +48,7 @@ Verify the sensor is detected:
 
     i2cdetect -y 1
 
-The SHT41 default I²C address is:
+The SHT4x default I²C address is:
 
     0x44
   
@@ -63,7 +63,7 @@ The SHT41 default I²C address is:
 ## Usage
 
 1. Add an Inject node.
-2. Connect it to the SHT41 node.
+2. Connect it to the SHT4x node.
 3. Connect a Debug node to view the output.
 4. Deploy.
 5. Click Inject.

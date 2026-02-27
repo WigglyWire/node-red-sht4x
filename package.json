@@ -1,5 +1,5 @@
 {
-  "name": "@WigglyWire/node-red-sht4x",
+  "name": "@wigglywire/node-red-sht4x",
   "version": "0.1.0",
   "description": "Node-RED node to read temperature and humidity from Sensirion SHT4x sensors over I2C",
   "dependencies": {
@@ -8,7 +8,7 @@
   "keywords": [
     "node-red",
     "sht4x",
-	"sht4`",
+	"sht41",
     "temperature",
     "humidity",
     "i2c",
