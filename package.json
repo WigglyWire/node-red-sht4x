@@ -1,0 +1,38 @@
+{
+  "name": "@WigglyWire/node-red-sht4x",
+  "version": "0.1.0",
+  "description": "Node-RED node to read temperature and humidity from Sensirion SHT4x sensors over I2C",
+  "dependencies": {
+    "i2c-bus": "^5.2.2"
+  },
+  "keywords": [
+    "node-red",
+    "sht4x",
+	"sht4`",
+    "temperature",
+    "humidity",
+    "i2c",
+    "sensor"
+  ],
+  "author": {
+    "name": "Matt Love",
+    "email": "Matt@WigglyWire.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WigglyWire/node-red-sht4x"
+  },
+  "bugs": {
+    "url": "https://github.com/WigglyWire/node-red-sht4x/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "node-red": {
+    "version": ">=3.0.0",
+    "nodes": {
+      "sht41": "sht41.js"
+    }
+  }
+}

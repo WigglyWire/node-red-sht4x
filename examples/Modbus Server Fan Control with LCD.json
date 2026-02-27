@@ -1,0 +1,912 @@
+[
+    {
+        "id": "0080966785d82556",
+        "type": "tab",
+        "label": "SHT41",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7efb63c0e8754179",
+        "type": "junction",
+        "z": "0080966785d82556",
+        "x": 60,
+        "y": 640,
+        "wires": [
+            [
+                "ebccfd932c2a31f0",
+                "4f8b4ec26fd5a71a"
+            ]
+        ]
+    },
+    {
+        "id": "615e4791407c064f",
+        "type": "junction",
+        "z": "0080966785d82556",
+        "x": 1060,
+        "y": 620,
+        "wires": [
+            [
+                "e8888c8f40ef02e7",
+                "b11d99967f295bce"
+            ]
+        ]
+    },
+    {
+        "id": "71d10f437b715aea",
+        "type": "inject",
+        "z": "0080966785d82556",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "54a29234d86ad5fc",
+                "7efb63c0e8754179"
+            ]
+        ]
+    },
+    {
+        "id": "bb5d1f552990cb21",
+        "type": "modbus-write",
+        "z": "0080966785d82556",
+        "name": "Temperature Int Scale 1",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "4",
+        "quantity": "1",
+        "server": "533869ad9b3eb5c0",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 1330,
+        "y": 200,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "54a29234d86ad5fc",
+        "type": "SHT41",
+        "z": "0080966785d82556",
+        "name": "",
+        "busNum": "1",
+        "address": "0x44",
+        "precision": "high",
+        "unit": "F",
+        "x": 440,
+        "y": 300,
+        "wires": [
+            [
+                "2235b3f5884da7d5",
+                "7d4acd6f6e02d67a",
+                "fc58ecc884c93b2a"
+            ]
+        ]
+    },
+    {
+        "id": "61615f2b34e7a921",
+        "type": "modbus-write",
+        "z": "0080966785d82556",
+        "name": "Humidity Int Scale 1",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "5",
+        "quantity": "1",
+        "server": "533869ad9b3eb5c0",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 1320,
+        "y": 240,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7996814ebe0de15a",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Registers 40005, 40006",
+        "info": "Registers 40005, 40006\nSending integer values, truncated\nExample: 75.2 -> 75",
+        "x": 1320,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "45e72b8c321d62be",
+        "type": "change",
+        "z": "0080966785d82556",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload * 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1100,
+        "y": 360,
+        "wires": [
+            [
+                "4a17269f5534ca06"
+            ]
+        ]
+    },
+    {
+        "id": "1a41eb978e0fb4c9",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Split Temp & RH into 2 outputs",
+        "info": "",
+        "x": 780,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "4a17269f5534ca06",
+        "type": "modbus-write",
+        "z": "0080966785d82556",
+        "name": "Temperature Int Scale 100",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "6",
+        "quantity": "1",
+        "server": "533869ad9b3eb5c0",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 1340,
+        "y": 360,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a6a73866415c152d",
+        "type": "modbus-write",
+        "z": "0080966785d82556",
+        "name": "Humidity Int Scale 100",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "7",
+        "quantity": "1",
+        "server": "533869ad9b3eb5c0",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 1320,
+        "y": 400,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e00e70ea6917f057",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Registers 40007, 40008",
+        "info": "Registers 40007, 40008\nSending integer values, scale 100\nExample: 75.2 -> 7520",
+        "x": 1320,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "303c380f947c865c",
+        "type": "change",
+        "z": "0080966785d82556",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "msg.payload * 100",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 400,
+        "wires": [
+            [
+                "a6a73866415c152d"
+            ]
+        ]
+    },
+    {
+        "id": "e6359853d3e13d3e",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Multiply by 100",
+        "info": "Scale 100",
+        "x": 1100,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "711aab476d3b2984",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Set repeat interval here",
+        "info": "",
+        "x": 220,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b8ee1c02edef8f37",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Or provide another trigger",
+        "info": "",
+        "x": 230,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "857f83c754dcca8b",
+        "type": "function",
+        "z": "0080966785d82556",
+        "name": "function 2",
+        "func": "// Example: msg.payload = 12.34 (float)\nlet value = msg.payload;\n\n// Create a buffer and write float\nlet buf = Buffer.allocUnsafe(4);\nbuf.writeFloatBE(value, 0); // Use writeFloatLE if little-endian\n\n// Split into two 16-bit registers\nlet registers = [\n    buf.readUInt16BE(0), // High word\n    buf.readUInt16BE(2)  // Low word\n];\n\nmsg.payload = registers;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 520,
+        "wires": [
+            [
+                "dab7645d69f3ee14"
+            ]
+        ]
+    },
+    {
+        "id": "dab7645d69f3ee14",
+        "type": "modbus-write",
+        "z": "0080966785d82556",
+        "name": "Temperature as Float",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "MHoldingRegisters",
+        "adr": "8",
+        "quantity": "2",
+        "server": "533869ad9b3eb5c0",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 1320,
+        "y": 520,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9016b4e24a812558",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Registers 40009-40012",
+        "info": "Registers 40009 & 40010, and 40011 & 40012\nSending true float values across 2 16-bit Registers",
+        "x": 1320,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "cb623be7341fad31",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Split Float -> 2 Words",
+        "info": "Passing float value directly, across two 16-bit registers",
+        "x": 1080,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "c4c0b3c412676c3a",
+        "type": "function",
+        "z": "0080966785d82556",
+        "name": "function 3",
+        "func": "// Example: msg.payload = 12.34 (float)\nlet value = msg.payload;\n\n// Create a buffer and write float\nlet buf = Buffer.allocUnsafe(4);\nbuf.writeFloatBE(value, 0); // Use writeFloatLE if little-endian\n\n// Split into two 16-bit registers\nlet registers = [\n    buf.readUInt16BE(0), // High word\n    buf.readUInt16BE(2)  // Low word\n];\n\nmsg.payload = registers;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 560,
+        "wires": [
+            [
+                "1fccc7cb73dba291"
+            ]
+        ]
+    },
+    {
+        "id": "1fccc7cb73dba291",
+        "type": "modbus-write",
+        "z": "0080966785d82556",
+        "name": "Humidity as Float",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "MHoldingRegisters",
+        "adr": "10",
+        "quantity": "2",
+        "server": "533869ad9b3eb5c0",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 1310,
+        "y": 560,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7c9f73c44d06cca4",
+        "type": "LCD-I2C",
+        "z": "0080966785d82556",
+        "name": "",
+        "variant": "PCF8574",
+        "size": "20x4",
+        "x": 800,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "b9906b65e15f8f84",
+        "type": "rpi-gpio in",
+        "z": "0080966785d82556",
+        "name": "",
+        "pin": "18",
+        "intype": "down",
+        "debounce": "25",
+        "read": true,
+        "bcm": true,
+        "x": 180,
+        "y": 760,
+        "wires": [
+            [
+                "cd2906c54ef314d7"
+            ]
+        ]
+    },
+    {
+        "id": "cd2906c54ef314d7",
+        "type": "modbus-write",
+        "z": "0080966785d82556",
+        "name": "Push Button",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "2",
+        "quantity": "1",
+        "server": "533869ad9b3eb5c0",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 450,
+        "y": 760,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "7bdb610d5c144742",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Messages to LCD Screen",
+        "info": "",
+        "x": 750,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "af0deabb8a935b15",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "RPi GPIO - Push button input written to Modbus Coil 3",
+        "info": "Push button input written to Coil, instead of Discrete input",
+        "x": 320,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "11337b3c0fb965c5",
+        "type": "modbus-server",
+        "z": "0080966785d82556",
+        "name": "Server - Port 10502",
+        "logEnabled": true,
+        "hostname": "10.0.0.161",
+        "serverPort": "10502",
+        "responseDelay": 100,
+        "delayUnit": "ms",
+        "coilsBufferSize": "5",
+        "holdingBufferSize": "8",
+        "inputBufferSize": "20",
+        "discreteBufferSize": "5",
+        "showErrors": true,
+        "showStatusActivities": true,
+        "x": 790,
+        "y": 740,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ebccfd932c2a31f0",
+        "type": "modbus-getter",
+        "z": "0080966785d82556",
+        "name": "Fan Setpoint & Deadband",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "showWarnings": true,
+        "logIOActivities": false,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "0",
+        "quantity": "3",
+        "server": "533869ad9b3eb5c0",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": true,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 230,
+        "y": 620,
+        "wires": [
+            [
+                "274d9f509748bb4b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "51d651ab66bb93dd",
+        "type": "function",
+        "z": "0080966785d82556",
+        "name": "Fan Control",
+        "func": "// *** INPUTS ***\n// Automatic Fan Control\nlet temperature = msg.payload.SHT41.temperature;   // Measured temperature from SHT41\nlet setpointFloatWords = msg.payload.Setpoint;     // Setpoint at which to turn fan on - From Modbus H.Registers 0 and 1\nlet deadband = {payload: msg.payload.Setpoint[2]}; // Expose deadband variable over Modbus, scaled 10x - From H.Reg 2\n\n// Override Fan Control\nlet fanOverride = msg.payload.Override[0];      // Put fan into override mode - From Modbus Coil 0\nlet fanOverrideCmd = msg.payload.Override[1];   // To override fan off or on  - From Modbus Coil 1\n\n//Variable declaration\nlet minDB = 5;                                  // Minimum deadband threshold, scaled 10x\nlet fanRun = {\n    payload: context.get(\"fanRun\") || false};   // Creating a variable for fan output - using context.get for memory of variable state\nlet lcd = {payload: \"false\"};                   // Creating variable for LCD text generation\nlet units = msg.payload.SHT41.unit;             // Receive units of measurement from SHT41 node, displayed on LCD\n\n// Handle parsing fan setpoint\nlet buf = Buffer.alloc(4);                      // Create 4-byte buffer\nbuf.writeUInt16BE(setpointFloatWords[0], 0);    // Write each register as 16-bit BE (Big Endian)\nbuf.writeUInt16BE(setpointFloatWords[1], 2);\nlet setpoint = buf.readFloatBE(0) !== 0 ? buf.readFloatBE(0) : 72; // Read as float, set initial value to 72 if register is empty\n\n// *** CONTROL LOGIC ***\ndeadband.payload = deadband.payload > minDB ? deadband.payload : minDB; // Minimum DB. Written to Modbus H.Reg\nif (fanOverride) {\n    fanRun.payload = fanOverrideCmd;\n} else {\n    if (temperature >= setpoint) {\n        fanRun.payload = true;\n    }\n    else if (temperature < (setpoint - (deadband.payload/10))) {\n        fanRun.payload = false;\n    }\n}\ncontext.set(\"fanRun\", fanRun.payload);          // Storing fan output state in memory to be retrieved with context.get\n\n// Function Node mini-status update\nnode.status({ fill: \"green\", shape: \"dot\", text: (fanRun.payload ? \"FAN ON\" : \"FAN OFF\") + \" - DB: \" + deadband.payload });\n\n// Update LCD Display\nlcd.payload = [\n    { clear: false, text: \"Temperature: \" + temperature.toFixed(1) + \"\\xDF\" + units }, // \\xDF is special character to display ° symbol\n    { text: \"Humidity: \" + msg.payload.SHT41.humidity.toFixed(1) + \"%RH\" },\n    { text: \"Fan Setpoint: \" + setpoint.toFixed(1) + \"\\xDF\" + units },\n    { text: (fanOverride ? \"FAN IN HAND - \" : \"FAN IN AUTO - \") + (fanRun.payload ? \"ON \" : \"OFF\") }\n];\n\n// *** UPDATE OUTPUTS ***\nreturn [lcd, fanRun, deadband];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 620,
+        "wires": [
+            [
+                "7c9f73c44d06cca4"
+            ],
+            [
+                "615e4791407c064f"
+            ],
+            [
+                "5f0c567e6a910f3c"
+            ]
+        ]
+    },
+    {
+        "id": "e8888c8f40ef02e7",
+        "type": "rpi-gpio out",
+        "z": "0080966785d82556",
+        "name": "",
+        "pin": "26",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1240,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "223b5bb206eecff1",
+        "type": "join",
+        "z": "0080966785d82556",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "useparts": false,
+        "accumulate": false,
+        "timeout": "",
+        "count": "3",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 610,
+        "y": 620,
+        "wires": [
+            [
+                "51d651ab66bb93dd"
+            ]
+        ]
+    },
+    {
+        "id": "274d9f509748bb4b",
+        "type": "change",
+        "z": "0080966785d82556",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Setpoint",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 620,
+        "wires": [
+            [
+                "223b5bb206eecff1"
+            ]
+        ]
+    },
+    {
+        "id": "2235b3f5884da7d5",
+        "type": "change",
+        "z": "0080966785d82556",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "SHT41",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 580,
+        "wires": [
+            [
+                "223b5bb206eecff1"
+            ]
+        ]
+    },
+    {
+        "id": "4f8b4ec26fd5a71a",
+        "type": "modbus-getter",
+        "z": "0080966785d82556",
+        "name": "Fan Override Coils",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "showWarnings": false,
+        "logIOActivities": false,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "2",
+        "server": "533869ad9b3eb5c0",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "x": 210,
+        "y": 660,
+        "wires": [
+            [
+                "06356c23f6b657f2"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "06356c23f6b657f2",
+        "type": "change",
+        "z": "0080966785d82556",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Override",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 660,
+        "wires": [
+            [
+                "223b5bb206eecff1"
+            ]
+        ]
+    },
+    {
+        "id": "b11d99967f295bce",
+        "type": "modbus-write",
+        "z": "0080966785d82556",
+        "name": "Fan Run Cmd Status",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "Coil",
+        "adr": "3",
+        "quantity": "1",
+        "server": "533869ad9b3eb5c0",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 1320,
+        "y": 740,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "874aa929b30dfab7",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "RPi GPIO - Fan Coil Output",
+        "info": "",
+        "x": 1300,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "dbedf437bbc1206e",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Modbus Coil 4",
+        "info": "Indicating that ran is commanded to run",
+        "x": 1350,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "7d4acd6f6e02d67a",
+        "type": "change",
+        "z": "0080966785d82556",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 280,
+        "wires": [
+            [
+                "bb5d1f552990cb21",
+                "45e72b8c321d62be",
+                "857f83c754dcca8b"
+            ]
+        ]
+    },
+    {
+        "id": "fc58ecc884c93b2a",
+        "type": "change",
+        "z": "0080966785d82556",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 780,
+        "y": 320,
+        "wires": [
+            [
+                "61615f2b34e7a921",
+                "303c380f947c865c",
+                "c4c0b3c412676c3a"
+            ]
+        ]
+    },
+    {
+        "id": "5f0c567e6a910f3c",
+        "type": "modbus-write",
+        "z": "0080966785d82556",
+        "name": "Write Effective Deadband",
+        "showStatusActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "2",
+        "quantity": "1",
+        "server": "533869ad9b3eb5c0",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 1330,
+        "y": 840,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "61e80fdc5cdecc15",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Register 40003",
+        "info": "Update writing the effective Deadband to Register 40003",
+        "x": 1300,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "2dad63da89cda072",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "Modbus Server",
+        "info": "Modbus Server node just has to be present in the flow\nNot necessary to connect to anything else\n\nRaspberry Pi OS (Linux) sets below 1024 as 'privileged ports'\nwhich require special permissions to access.\nFor demo purposes, easier to set to port 10502 on both client and Server\n\nFor production service, likely want to assign permissions to use Port 502",
+        "x": 780,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "28632a80c0368474",
+        "type": "comment",
+        "z": "0080966785d82556",
+        "name": "README",
+        "info": "This is an example flow of a Modbus Server using an SHT41 sensor to execute simple closed-loop fan control based on a temperature setpoint and publishing to a local display.\n\nThe Server accepts fan setpoint and deadband values while outputting the temperature and humidity.\nThree formats of analog values via Modbus are demonstrated: float-truncated integer, scale 100 integer, and 2-word float.\n\nThe SHT41 sensor provides the temperature and humidity values, polled via I2C.\n\nAn optional display information using a 20x4 LCD screen is included.\n\nThe Raspberry Pi uses GPIO to detect a push button input and control a relay output (fan).",
+        "x": 180,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "533869ad9b3eb5c0",
+        "type": "modbus-client",
+        "name": "",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.0.0.161",
+        "tcpPort": "10502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": true,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "bf6ea38839e63328",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-modbus": "5.45.2",
+            "@wigglywire/node-red-sht4x": "0.1.0",
+            "node-red-contrib-pcf8574-lcd": "0.1.0",
+            "node-red-node-pi-gpio": "2.0.6"
+        }
+    }
+]

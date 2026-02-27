@@ -1,0 +1,99 @@
+<script type="text/javascript">
+    RED.nodes.registerType('SHT41', {
+        category: 'input',
+        color: '#1f77b4',
+        defaults: {
+            name: { value: "" },
+            busNum: { value: "1", required: true, validate: RED.validators.number() },
+            address: { value: "0x44", required: true, validate: function(v) {
+                return /^0x[0-9a-fA-F]+$|^[0-9]+$/.test(v);
+                    }
+                },
+            precision: { value: "high" },
+            unit: { value: "C" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-thermometer-half",
+        label: function() {
+            return this.name || "SHT41";
+        },
+        oneditprepare: function() {
+                if (this.busNum === undefined) {
+                        $("#node-input-busNum").val(1);
+                }
+                $("#node-input-busNum").spinner({
+                        min:0,
+                        max:7
+                });
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="SHT41">
+
+    <div class="form-row">
+        <label for="node-input-name">
+            <i class="fa fa-tag"></i> Name
+        </label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-busNum">
+            <i class="fa fa-random"></i> I2C Bus
+        </label>
+        /dev/i2c-<input id="node-input-busNum" class="I2C-in-address" min=0 max=7 style="width:40px; height:16px;">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-address">
+            <i class="fa fa-map-marker"></i> I2C Address
+        </label>
+        <input type="text" id="node-input-address">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-precision">
+            <i class="fa fa-tachometer"></i> Precision
+        </label>
+        <select id="node-input-precision">
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-unit">
+            <i class="fa fa-thermometer-half"></i> Unit
+        </label>
+        <select id="node-input-unit">
+            <option value="C">°C</option>
+            <option value="F">°F</option>
+        </select>
+    </div>
+
+</script>
+
+<script type="text/html" data-help-name="SHT41">
+    <p>
+        Reads temperature and humidity from a Sensirion SHT41 sensor over I2C.
+    </p>
+    <p>
+        Inputs:
+    </p>
+    <ul>
+    <li><b>I2C Bus</b> - I2C bus number, default is 1. This is not common to change.</li>
+    <li><b>I2C Address</b> - Address of I2C device to poll. SHT41 is 0x44 in hex, or 68 in decimal.</li>
+    <li><b>Precision</b> - Lower precision can be polled more frequently. Refer to data sheet for more information.</li>
+    <li><b>Unit</b> - Return values in Celcius or Fahrenheit.</li>
+    </ul>
+    <p>
+        Outputs:
+    </p>
+    <ul>
+        <li><code>msg.payload.temperature</code> – Temperature (°C or °F)</li>
+        <li><code>msg.payload.humidity</code> – Relative Humidity (%)</li>
+    </ul>
+</script>

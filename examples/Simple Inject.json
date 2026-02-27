@@ -1,0 +1,39 @@
+[
+    {
+        "id": "sht41",
+        "type": "SHT41",
+        "name": "",
+        "busNum": "1",
+        "address": "0x44",
+        "precision": "high",
+        "unit": "C",
+        "x": 720,
+        "y": 260,
+        "wires": [
+            [
+                "debug"
+            ]
+        ]
+    },
+    {
+        "id": "inject",
+        "type": "inject",
+        "name": "Read Sensor",
+        "repeat": "",
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "sht41"
+            ]
+        ]
+    },
+    {
+        "id": "debug",
+        "type": "debug",
+        "name": "SHT Output",
+        "x": 950,
+        "y": 260,
+        "wires": []
+    }
+]
