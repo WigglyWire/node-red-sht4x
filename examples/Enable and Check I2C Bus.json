@@ -1,0 +1,227 @@
+[
+    {
+        "id": "bb5ca9884f8759e2",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e6b431b0244373fa",
+        "type": "exec",
+        "z": "bb5ca9884f8759e2",
+        "command": "sudo raspi-config nonint do_i2c 0",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "2",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 420,
+        "y": 220,
+        "wires": [
+            [
+                "9cc425bf64b5b8a6"
+            ],
+            [
+                "9cc425bf64b5b8a6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "190960b1dc4d97ea",
+        "type": "inject",
+        "z": "bb5ca9884f8759e2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "e6b431b0244373fa"
+            ]
+        ]
+    },
+    {
+        "id": "9cc425bf64b5b8a6",
+        "type": "debug",
+        "z": "bb5ca9884f8759e2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "83542b561a2f4031",
+        "type": "exec",
+        "z": "bb5ca9884f8759e2",
+        "command": "i2cdetect -y 1",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 350,
+        "y": 320,
+        "wires": [
+            [
+                "be561fa2344d40ea"
+            ],
+            [
+                "be561fa2344d40ea"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "19cf57dc10e94732",
+        "type": "inject",
+        "z": "bb5ca9884f8759e2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 320,
+        "wires": [
+            [
+                "83542b561a2f4031"
+            ]
+        ]
+    },
+    {
+        "id": "be561fa2344d40ea",
+        "type": "debug",
+        "z": "bb5ca9884f8759e2",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "sht41",
+        "type": "SHT41",
+        "z": "bb5ca9884f8759e2",
+        "name": "",
+        "busNum": "1",
+        "address": "0x44",
+        "precision": "high",
+        "unit": "C",
+        "x": 340,
+        "y": 420,
+        "wires": [
+            [
+                "debug"
+            ]
+        ]
+    },
+    {
+        "id": "inject",
+        "type": "inject",
+        "z": "bb5ca9884f8759e2",
+        "name": "Read Sensor",
+        "repeat": "",
+        "x": 150,
+        "y": 420,
+        "wires": [
+            [
+                "sht41"
+            ]
+        ]
+    },
+    {
+        "id": "debug",
+        "type": "debug",
+        "z": "bb5ca9884f8759e2",
+        "name": "SHT Output",
+        "active": true,
+        "x": 530,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "aaa72aec584a1c46",
+        "type": "comment",
+        "z": "bb5ca9884f8759e2",
+        "name": "Test Sensor",
+        "info": "",
+        "x": 150,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "17e783123ad5a31e",
+        "type": "comment",
+        "z": "bb5ca9884f8759e2",
+        "name": "Scan I2C Bus For Devices",
+        "info": "Run `i2cdetect -y 1` command to scan I2C Bus 1\n\n`-y` pre-loads user confirmation for scanning\n\n`1` specifies I2C Bus #1",
+        "x": 190,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "746802c8dfd19002",
+        "type": "comment",
+        "z": "bb5ca9884f8759e2",
+        "name": "Enable I2C Interface",
+        "info": "Run `sudo raspi-config nonint do_i2c 0` command to enable I2C interface in RPi OS\n\nThis is necessary to poll the I2C bus to scan devices, read data, or send commands.\n\nRun `sudo raspi-config nonint do_i2c 1` to disable I2C interface.",
+        "x": 170,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "761129b5c8b749c3",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@wigglywire/node-red-sht4x": "0.1.1"
+        }
+    }
+]

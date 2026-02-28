@@ -11,7 +11,7 @@ A Node-RED node for interfacing with the Sensirion SHT4x temperature and humidit
 * Designed for Raspberry Pi and other Linux SBCs
 
 ## Installation:
-## From Node-RED (Recommended):
+### From Node-RED (Recommended):
 1. Open Node-RED
 2. Go to Menu → Manage Palette
 3. Select the Install tab
