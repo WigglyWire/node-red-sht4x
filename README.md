@@ -68,6 +68,8 @@ The SHT4x default I²C address is:
 4. Deploy.
 5. Click Inject.
 
+https://github.com/user-attachments/assets/ccbb2455-8f3e-49f4-932e-048e20e833b9
+
 ## Output
 
 When triggered, the node outputs a message object:
