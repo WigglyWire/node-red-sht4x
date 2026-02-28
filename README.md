@@ -11,7 +11,7 @@ A Node-RED node for interfacing with the Sensirion SHT4x temperature and humidit
 * Designed for Raspberry Pi and other Linux SBCs
 
 ## Installation:
-## From Node-RED (Recommended):
+### From Node-RED (Recommended):
 1. Open Node-RED
 2. Go to Menu → Manage Palette
 3. Select the Install tab
@@ -67,6 +67,8 @@ The SHT4x default I²C address is:
 3. Connect a Debug node to view the output.
 4. Deploy.
 5. Click Inject.
+
+https://github.com/user-attachments/assets/ccbb2455-8f3e-49f4-932e-048e20e833b9
 
 ## Output
 
